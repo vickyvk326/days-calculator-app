@@ -1,12 +1,10 @@
-import { Component } from "react";
-
+import { Component, createContext } from "react";
+export const AppContext = createContext();
 export default class Mainapp extends Component {
-  state = [
-    {
-      userDate: "",
-      userDateInTime: 0,
-    },
-  ];
+  state = {
+    userDate: "",
+    userDateInTime: 0,
+  };
   handleDate = (value) => {
     this.setState(() => {
       return {
@@ -48,6 +46,9 @@ export default class Mainapp extends Component {
             onChange={(e) => this.handleDate(e.target.value)}
           />
         </label>
+        <AppContext.Provider
+          value={(this.state.userDate, this.state.userDateInTime)}
+        ></AppContext.Provider>
         <h3>
           You chose :{" "}
           <span>{this.state.userDate !== "" && this.state.userDate}</span>
